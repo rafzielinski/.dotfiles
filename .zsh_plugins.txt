@@ -1,0 +1,23 @@
+caarlos0/ports kind:path
+caarlos0/zsh-git-fetch-merge kind:path
+caarlos0/zsh-git-sync kind:path
+caarlos0/zsh-mkc
+caarlos0/zsh-open-pr kind:path
+mafredri/zsh-async
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+djui/alias-tips
+
+# robbyrussell/oh-my-zsh folder:plugins/common-aliases
+
+marzocchi/zsh-notify
+buonomo/yarn-completion
+ELLIOTTCABLE/rbenv.plugin.zsh
+tomsquest/nvm-auto-use.zsh
+
+# Theme
+denysdovhan/spaceship-prompt
+
+# these should be at last!
+zdharma/fast-syntax-highlighting
+zsh-users/zsh-history-substring-search
