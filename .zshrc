@@ -57,10 +57,8 @@ if [ -f ~/.aliases ]; then
   . ~/.aliases
 fi
 
-alias getflavdb='rsync -av --progress --partial -e "ssh -i ~/.ssh/id_rsa_np" root@178.62.46.107:/var/lib/postgresql/analytics/SQL/flavourly.sql ~/Projects/Flavourly/flavourly-shopper/SQL/'
-
 # set rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH"
