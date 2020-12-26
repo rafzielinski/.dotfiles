@@ -31,9 +31,12 @@ zstyle ':completion:*' group-name '' # group results by category
 zstyle ':completion:::::' completer _expand _complete _ignored _approximate # enable approximate matches for completion
 
 # Load antibody plugin manager
-source <(antibody init)
+# source <(antibody init)
+export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_LOADFILE=$HOME/.zshrc.bundles
+source $ZPLUG_HOME/init.zsh
 
-antibody bundle < ~/.dotfiles/.zsh_plugins.txt
+# antibody bundle < ~/.dotfiles/.zsh_plugins.txt
 
 # Keybindings
 bindkey '^[[A' history-substring-search-up
@@ -42,11 +45,11 @@ bindkey '^[[3~' delete-char
 bindkey '^[3;5~' delete-char
 
 # handle OMZ
-ANTIBODY_HOME="$(antibody home)"
-export ZSH="$ANTIBODY_HOME"/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh
-DISABLE_AUTO_UPDATE="true"
-antibody bundle robbyrussell/oh-my-zsh
-antibody bundle robbyrussell/oh-my-zsh path:plugins/git
+# ANTIBODY_HOME="$(antibody home)"
+# export ZSH="$ANTIBODY_HOME"/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh
+# DISABLE_AUTO_UPDATE="true"
+# antibody bundle robbyrussell/oh-my-zsh
+# antibody bundle robbyrussell/oh-my-zsh path:plugins/git
 
 # nvm setup
 export NVM_DIR="$HOME/.nvm"
@@ -56,6 +59,9 @@ export NVM_DIR="$HOME/.nvm"
 if [ -f ~/.aliases ]; then
   . ~/.aliases
 fi
+
+# set neovim
+export EDITOR="nvim"
 
 # set rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
