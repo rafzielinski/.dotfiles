@@ -25,6 +25,9 @@ setopt share_history # share history between different instances
 setopt correct_all # autocorrect commands
 setopt interactive_comments # allow comments in interactive shells
 
+# Enable 256 colours
+export TERM=xterm-256color
+
 # Improve autocompletion style
 zstyle ':completion:*' menu select # select completions with arrow keys
 zstyle ':completion:*' group-name '' # group results by category
@@ -36,7 +39,22 @@ export ZPLUG_HOME=/usr/local/opt/zplug
 export ZPLUG_LOADFILE=$HOME/.zshrc.bundles
 source $ZPLUG_HOME/init.zsh
 
-# antibody bundle < ~/.dotfiles/.zsh_plugins.txt
+# export PATH="$HOME/.oh-my-zsh/"
+plugins=(
+  git
+  bundler
+  dotenv
+  osx
+  rake
+  rbenv
+  ruby
+)
+export ZSH=$HOME/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+if [ -f ~/.aliases ]; then
+  . ~/.aliases
+fi
 
 # Keybindings
 bindkey '^[[A' history-substring-search-up
@@ -44,21 +62,10 @@ bindkey '^[[B' history-substring-search-down
 bindkey '^[[3~' delete-char
 bindkey '^[3;5~' delete-char
 
-# handle OMZ
-# ANTIBODY_HOME="$(antibody home)"
-# export ZSH="$ANTIBODY_HOME"/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh
-# DISABLE_AUTO_UPDATE="true"
-# antibody bundle robbyrussell/oh-my-zsh
-# antibody bundle robbyrussell/oh-my-zsh path:plugins/git
-
 # nvm setup
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-if [ -f ~/.aliases ]; then
-  . ~/.aliases
-fi
 
 # set neovim
 export EDITOR="nvim"

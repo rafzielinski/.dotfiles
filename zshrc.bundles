@@ -4,10 +4,10 @@
 # zplug "caarlos0/zsh-mkc"
 # zplug "caarlos0/zsh-open-pr" 
 # zplug "mafredri/zsh-async"
+
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "djui/alias-tips"
-# robbyrussell/oh-my-zsh folder:plugins/common-aliases
 zplug "marzocchi/zsh-notify"
 zplug "buonomo/yarn-completion"
 zplug "ELLIOTTCABLE/rbenv.plugin.zsh"
