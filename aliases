@@ -13,4 +13,6 @@ alias migrate="rake db:migrate db:rollback && rake db:migrate db:test:prepare"
 alias s="rspec"
 alias rs="rails s"
 alias ws="DISABLE_SPRING=1 ./bin/webpack-dev-server"
+alias deploy-staging="DISABLE_SPRING=1 bundle exec cap staging deploy"
+alias deploy-production="DISABLE_SPRING=1 bundle exec cap production deploy"
 
