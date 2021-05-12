@@ -46,7 +46,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'christoomey/vim-system-copy'
 
   " Theme
-  Plug 'sonph/onehalf', { 'rtp': 'vim' }
+  " Plug 'sonph/onehalf', { 'rtp': 'vim' }
+  Plug 'morhetz/gruvbox'
 call plug#end()
 
 

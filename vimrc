@@ -47,8 +47,8 @@ endif
 " Theme activation
 syntax on
 set t_Co=256
-colorscheme onehalfdark
-let g:lightline = { 'colorscheme': 'onehalfdark' }
+colorscheme gruvbox
+let g:lightline = { 'colorscheme': 'gruvbox' }
 " source ./vim/colors/molokai.vim
 " let g:molokai_original = 1
 " let g:rehash256 = 1
@@ -237,6 +237,32 @@ nnoremap <Leader>h :SidewaysLeft<cr>
 nnoremap <Leader>l :SidewaysRight<cr>
 
 let g:svelte_preprocessors = ['scss']
+
+" PYTHON PROVIDERS {{{
+
+if has('macunix')
+
+" OSX
+
+let g:python3_host_prog = '/usr/local/bin/python3' " -- Set python 3 provider
+
+let g:python_host_prog = '/usr/local/bin/python2' " --- Set python 2 provider
+
+elseif has('unix')
+
+" Ubuntu
+
+let g:python3_host_prog = '/usr/bin/python3' " -------- Set python 3 provider
+
+let g:python_host_prog = '/usr/bin/python' " ---------- Set python 2 provider
+
+elseif has('win32') || has('win64')
+
+" Window
+
+endif
+
+" }} }
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
