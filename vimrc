@@ -32,7 +32,9 @@ set autoindent
 set smartindent
 
 set cursorline
-set nowrap
+set nowrap           " do not automatically wrap on load
+set formatoptions-=t " do not automatically wrap text when typing
+set nofoldenable
 
 " " Switch syntax highlighting on, when the terminal has colors
 " " Also switch on highlighting the last used search pattern.
@@ -62,6 +64,8 @@ endif
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
 " - https://github.com/Valloric/YouCompleteMe
 " - https://github.com/nvim-lua/completion-nvim
+let g:UtilSnipsSnippetsDir="~/.vim/plugged/vim-snippets/UtilSnips"
+" let g:UltiSnipsSnippetDirectories=[$HOME.'/.dotfiles/vim/plugged/vim-snippets/UltiSnips']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
