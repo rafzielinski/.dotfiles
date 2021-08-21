@@ -47,7 +47,8 @@ syntax on
 set t_Co=256
 " colorscheme onehalfdark
 " let g:lightline = { 'colorscheme': 'onehalfdark' }
-colorscheme blackbird
+" colorscheme blackbird
+colorscheme gruvbox
 
 set background=dark
 " Overwrite Comment color
