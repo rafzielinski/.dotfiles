@@ -23,3 +23,7 @@ sudo chmod a+x /usr/local/bin/bashdot
 cd ~/.dotfiles
 bashdot install default
 ```
+
+```
+git clone https://github.com/zplug/zplug $ZPLUG_HOME
+```
