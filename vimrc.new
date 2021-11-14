@@ -1,48 +1,60 @@
-set encoding=utf-8
-
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-
-" ================ General Config ====================
-
-set number                      "Line numbers are good
-set backspace=indent,eol,start  "Allow backspace in insert mode
-set history=500                 "Store lots of :cmdline history
-set showcmd                     "Show incomplete cmds down the bottom
-set showmode                    "Show current mode down the bottom
-set gcr=a:blinkon0              "Disable cursor blink
-set visualbell                  "No sounds
-set autoread                    "Reload files changed outside vim
-
-" This makes vim act like all other editors, buffers can
-" exist in the background without being in a window.
-" http://items.sjbach.com/319/configuring-vim-right
-set hidden
-
-"turn on syntax highlighting
+" MAIN CONFIG
 syntax on
 
-" Change leader to a space because the backslash is too far away
-" That means all \x commands turn into space+x
-let mapleader = " "
+set fileformat=unix
+set encoding=UTF-8
 
+" Tab spacing exception for Python files
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
 
-" ================ Turn Off Swap Files ==============
-
-set noswapfile
-set nobackup
-set nowb
-
-" ================ Indentation ======================
-
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set autoindent
 set smartindent
 set smarttab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
 set expandtab
+set nowrap
+set list listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
+
+set backspace=2     " Backspace deletes like most programs in insert mode
+set ruler           " Show the cursor position all the time
+set laststatus=2    " Always display the status line
+set autowrite       " Automatically :write before running commands
+set modelines=0     " Disable modelines as a security precaution
+set nomodeline
+set nofoldenable    " Disable lines folding
+set nojoinspaces    " Use one space, not two, after punctuation.
+
+set cursorline      " Highglight whole line the curson is on
+set number          " Display line numbers
+set relativenumber  " Make them relative
+set scrolloff=8     " Activate scroll n lines before the edge
+set signcolumn=yes  " Activate error column
+set showcmd         " Show commands when typed
+set noshowmode      " Disable default vim showing mode
+set conceallevel=1
+set shortmess+=c
+set formatoptions-=cro
+
+set noerrorbells visualbell t_vb= " Disable visual and sound errors
+set nowritebackup " Disable backups
+set noswapfile " Disable swap files
+set history=500
+set nobackup
+set undodir=~/.vim/undodir " Make infinite undo
+set undofile
+set clipboard=unnamed
+
+" SEARCH
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+nnoremap <CR> :noh<CR><CR>:<backspace>
 
 " Auto indent pasted text
 nnoremap p p=`]<C-o>
@@ -51,49 +63,64 @@ nnoremap P P=`]<C-o>
 filetype plugin on
 filetype indent on
 
-" Display tabs and trailing spaces visually
-set list listchars=tab:\ \ ,trail:·
+" Import plugins file
+if filereadable(expand("~/dotfiles/vimrc.bundles"))
+  source ~/dotfiles/vimrc.bundles
+endif
 
-set nowrap       "Don't wrap lines
-set linebreak    "Wrap lines at convenient points
+" Import plugins config file
+if filereadable(expand("~/dotfiles/vimrc.plugins.config"))
+  source ~/dotfiles/vimrc.plugins.config
+endif
 
-" ================ Folds ============================
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
 
-set foldmethod=indent   "fold based on indent
-set foldnestmax=3       "deepest fold is 3 levels
-set nofoldenable        "dont fold by default
+  " Use ag in fzf for listing files. Lightning fast and respects .gitignore
+  let $FZF_DEFAULT_COMMAND = 'ag --literal --files-with-matches --nocolor --hidden -g ""'
 
-" ================ Completion =======================
+  if !exists(":Ag")
+    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+    nnoremap \ :Ag<SPACE>
+  endif
+endif
 
-" set wildmode=list:longest
-" set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-" set wildignore=*.o,*.obj,*."stuff to ignore when tab completing
-" set wildignore+=*vim/backups*
-" set wildignore+=*sass-cache*
-" set wildignore+=*DS_Store*
-" set wildignore+=vendor/rails/**
-" set wildignore+=vendor/cache/**
-" set wildignore+=*.gem
-" set wildignore+=log/**
-" set wildignore+=tmp/**
-" set wildignore+=*.png,*.jpg,*.gif
+" Switch between the last two files
+nnoremap <Leader><Leader> <C-^>
 
-" ================ Scrolling ========================
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
 
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
-set sidescrolloff=15
-set sidescroll=1
+" Map Ctrl + p to open fuzzy find (FZF)
+nnoremap <c-p> :Files<cr>
 
-" ================ Search ===========================
+" Treat <li> and <p> tags like the block tags they are
+let g:html_indent_tags = 'li\|p'
 
-set incsearch       " Find the next match as we type the search
-set hlsearch        " Highlight searches by default
-set ignorecase      " Ignore case when searching...
-set smartcase       " ...unless we type a capital
+" Set tags for vim-fugitive
+set tags^=.git/tags
 
-" ================ Security ==========================
-set modelines=0
-set nomodeline
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
-" ================ Custom Settings ========================
-so ~/.vim/settings.vim
+" COLOR & THEME CONFIG
+set termguicolors
+let g:gruvbox_italic=1
+colorscheme gruvbox
+set background=dark
+hi Normal guibg=NONE ctermbg=NONE
+let g:terminal_ansi_colors = [
+    \ '#282828', '#cc241d', '#98971a', '#d79921', '#458588', '#b16286', '#689d6a', '#a89984',
+    \ '#928374', '#fb4934', '#b8bb26', '#fabd2f', '#83a598', '#d3869b', '#8ec07c', '#ebdbb2',
+\]
+
+" Adding remaps for native autoclosing
+so ~/dotfiles/vimrc.autoclose
