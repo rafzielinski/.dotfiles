@@ -13,8 +13,6 @@
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
-[merge]
-  ff = only
 [fetch]
   prune = true
 [rebase]
@@ -24,5 +22,5 @@
 [diff]
   colorMoved = zebra
 [user]
-  email = rafzielinski@outlook.com
+	email = rafal@primate.co.uk
   name = Raf Zielinski

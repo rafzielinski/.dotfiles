@@ -26,11 +26,18 @@ call plug#begin('~/.vim/plugged') " Plugins
 
   Plug 'andymass/vim-matchup'
 
+  Plug 'editorconfig/editorconfig-vim'
+
   " Track the engine.
-  Plug 'SirVer/ultisnips'
+  " Plug 'SirVer/ultisnips'
+  Plug 'MarcWeber/vim-addon-mw-utils'
+  Plug 'tomtom/tlib_vim'
+  Plug 'garbas/vim-snipmate'
 
   " Snippets are separated from the engine. Add this if you want them:
   Plug 'honza/vim-snippets'
+
+  " Plug 'ervandew/supertab'
 
   Plug 'sheerun/vim-polyglot'
   Plug 'ap/vim-css-color'
